@@ -24,11 +24,11 @@ function ScrollManager() {
 
 export function Brand() {
   return (
-    <Link to="/" className="brand" aria-label="PureEats home">
+    <Link to="/" className="brand" aria-label="Orders24 home">
       <img
-        src="/pureeats-logo.png"
-        alt="PureEats by Aadvik"
-        className="brand-logo"
+        src="/images/header-logo.png"
+        alt="Orders24 by Aadvik"
+        className="header-logo"
       />
     </Link>
   );
@@ -142,11 +142,11 @@ export default function Layout() {
           </div>
 
           <div className="footer-brand-social">
-            <img
-              src="/aadvik-logo.jpeg"
-              alt="Aadvik Techie Views logo"
-              className="footer-company-logo"
-            />
+          <img
+            src="/images/footer-logo.png"
+            alt="Aadvik logo"
+            className="footer-company-logo"
+          />
 
             <div className="company-social">
               <h3>Connect with us</h3>

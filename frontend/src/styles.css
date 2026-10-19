@@ -131,20 +131,25 @@ p {
   gap: 1rem;
 }
 
+
 .brand {
-  display: inline-flex;
+  display: flex;
   align-items: center;
-  flex-shrink: 0;
+  flex: 0 0 auto;
+  width: 220px;
+  max-width: 45%;
   text-decoration: none;
 }
 
 .brand-logo {
   display: block;
-  width: 220px;
-  max-width: 100%;
-  height: auto;
+  width: 100%;
+  max-width: 220px;
+  height: 48px;
   object-fit: contain;
+  object-position: left center;
 }
+
 
 .nav {
   display: flex;
@@ -657,11 +662,9 @@ input:focus, select:focus, textarea:focus {
 
 .footer-company-logo {
   display: block;
-  width: 180px;
-  max-width: 100%;
-  height: auto;
+  width: 65px;
+  height: 65px;
   object-fit: contain;
-  margin-bottom: 1rem;
 }
 
 .company-social {
