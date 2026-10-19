@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from 'react';
 import { Link, NavLink, Outlet, useLocation } from 'react-router-dom';
 
@@ -15,8 +16,7 @@ function ScrollManager() {
       return () => clearTimeout(timeout);
     }
 
-    window.scrollTo(0, 0);
-    return undefined;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }, [pathname, hash]);
 
   return null;
@@ -27,8 +27,8 @@ export function Brand() {
     <Link to="/" className="brand" aria-label="Orders24 home">
       <img
         src="/images/header-logo.png"
-        alt="Orders24 by Aadvik"
-        className="header-logo"
+        alt="Orders24"
+        className="brand-logo"
       />
     </Link>
   );
@@ -38,6 +38,7 @@ export default function Layout() {
   const [open, setOpen] = useState(false);
   const [showScrollTop, setShowScrollTop] = useState(false);
   const { pathname } = useLocation();
+  const brand = 'Orders24';
 
   useEffect(() => {
     setOpen(false);
@@ -49,7 +50,6 @@ export default function Layout() {
     };
 
     handleScroll();
-
     window.addEventListener('scroll', handleScroll, { passive: true });
 
     return () => {
@@ -83,6 +83,7 @@ export default function Layout() {
           <button
             type="button"
             className="menu-toggle"
+            aria-label={open ? 'Close navigation menu' : 'Open navigation menu'}
             aria-expanded={open}
             aria-controls="primary-nav"
             onClick={() => setOpen((previous) => !previous)}
@@ -107,7 +108,7 @@ export default function Layout() {
       </header>
 
       <main id="main">
-        <Outlet />
+        <Outlet context={{ brand }} />
       </main>
 
       <footer className="site-footer">
@@ -142,11 +143,11 @@ export default function Layout() {
           </div>
 
           <div className="footer-brand-social">
-          <img
-            src="/images/footer-logo.png"
-            alt="Aadvik logo"
-            className="footer-company-logo"
-          />
+            <img
+              src="/images/footer-logo.png"
+              alt="Aadvik Techie Views logo"
+              className="footer-company-logo"
+            />
 
             <div className="company-social">
               <h3>Connect with us</h3>
@@ -186,7 +187,7 @@ export default function Layout() {
           </div>
 
           <p className="company-copyright">
-            © 2021 Aadvik Techie Views Private Limited.
+            © {new Date().getFullYear()} Aadvik Techie Views Private Limited.
             All rights reserved.
           </p>
         </div>

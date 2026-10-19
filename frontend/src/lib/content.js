@@ -48,5 +48,5 @@ export const demoBusinessTypes = ['Restaurant / café', 'QSR', 'Cloud kitchen', 
 export const contactBusinessTypes = ['Restaurant / café', 'QSR', 'Cloud kitchen', 'Bar / brewery', 'Bakery', 'Restaurant chain'];
 export const outletOptions = ['1', '2–5', '6–15', '15+'];
 
-export const WHATSAPP_NUMBER = import.meta.env.VITE_WHATSAPP_NUMBER || '918849067601';
-export const CONTACT_EMAIL = import.meta.env.VITE_CONTACT_EMAIL || 'hello@foodos.in';
+export const WHATSAPP_NUMBER = import.meta.env.VITE_WHATSAPP_NUMBER || '918484956995';
+export const CONTACT_EMAIL = import.meta.env.VITE_CONTACT_EMAIL || 'hello@orders24.in';
