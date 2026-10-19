@@ -1,0 +1,53 @@
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: foodos
+      POSTGRES_USER: foodos
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-foodos}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U foodos -d foodos"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  # Catches outgoing email locally. Open http://localhost:8025 to read notifications.
+  # Replace with your real SMTP provider (MAIL_* variables) in production.
+  mailpit:
+    image: axllent/mailpit:latest
+    ports:
+      - "8025:8025"
+
+  backend:
+    build: ./backend
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      DB_URL: jdbc:postgresql://db:5432/foodos
+      DB_USER: foodos
+      DB_PASSWORD: ${DB_PASSWORD:-foodos}
+      JWT_SECRET: ${JWT_SECRET:?Set JWT_SECRET in .env (at least 32 characters)}
+      ADMIN_EMAIL: ${ADMIN_EMAIL:-admin@foodos.in}
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD:?Set ADMIN_PASSWORD in .env}
+      CORS_ALLOWED_ORIGINS: ${CORS_ALLOWED_ORIGINS:-http://localhost:3000}
+      MAIL_HOST: ${MAIL_HOST:-mailpit}
+      MAIL_PORT: ${MAIL_PORT:-1025}
+      MAIL_USERNAME: ${MAIL_USERNAME:-}
+      MAIL_PASSWORD: ${MAIL_PASSWORD:-}
+      MAIL_SMTP_AUTH: ${MAIL_SMTP_AUTH:-false}
+      MAIL_SMTP_STARTTLS: ${MAIL_SMTP_STARTTLS:-false}
+      NOTIFY_FROM: ${NOTIFY_FROM:-no-reply@foodos.in}
+      NOTIFY_TO: ${NOTIFY_TO:-hello@foodos.in}
+
+  frontend:
+    build: ./frontend
+    depends_on:
+      - backend
+    ports:
+      - "3000:80"
+
+volumes:
+  pgdata:
