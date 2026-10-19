@@ -1,3 +1,4 @@
+
 :root {
   --cream: #fbf6ee;
   --cream-2: #f4ead9;
@@ -20,7 +21,8 @@
 }
 
 html {
-  scroll-padding-top: 80px;
+  scroll-padding-top: 84px;
+  scroll-behavior: smooth;
 }
 
 body {
@@ -127,31 +129,27 @@ p {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  min-height: 100px;
+  min-height: 84px;
+  padding: 0;
   gap: 1rem;
 }
-
-
 
 .brand {
   display: flex;
   align-items: center;
-  flex: 0 0 auto;
-  width: 220px;
+  width: 380px;
   max-width: 45%;
-  text-decoration: none;
+  flex-shrink: 0;
 }
 
 .brand-logo {
   display: block;
-  width: 250px;
+  width: 380px;
+  height: 78px;
   max-width: 100%;
-  height: 180px;
   object-fit: contain;
+  object-position: left center;
 }
-
-
-
 
 .nav {
   display: flex;
@@ -639,22 +637,26 @@ input:focus, select:focus, textarea:focus {
 
 .site-footer {
   border-top: 1px solid var(--line);
-  padding: 2rem 0;
+  padding: 2.5rem 0 1rem;
   color: var(--ink-soft);
   font-size: 0.92rem;
 }
 
 .company-footer {
   display: grid;
-  grid-template-columns: minmax(0, 2fr) minmax(180px, 1fr);
-  gap: 2rem;
+  grid-template-columns: minmax(0, 1.7fr) minmax(180px, 0.8fr);
+  align-items: start;
+  gap: 2.5rem;
 }
 
 .company-details h2 {
   font-size: 1.4rem;
+  color: var(--ink);
+  margin-bottom: 1rem;
 }
 
 .company-details p {
+  margin-bottom: 0.7rem;
   overflow-wrap: anywhere;
 }
 
@@ -662,22 +664,58 @@ input:focus, select:focus, textarea:focus {
   color: var(--brand-dark);
 }
 
+.footer-brand-social {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.footer-brand {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+
+.footer-brand > a {
+  display: inline-flex;
+  align-items: center;
+  max-width: 160px;
+}
+
+.footer-logo {
+  display: block;
+  width: 140px;
+  max-width: 100%;
+  height: 55px;
+  object-fit: contain;
+  object-position: left center;
+}
+
+.footer-brand p {
+  margin: 0;
+}
+
 .footer-company-logo {
   display: block;
-  width: 65px;
+  width: 90px;
   height: 65px;
+  max-width: 100%;
   object-fit: contain;
+  object-position: left center;
 }
 
 .company-social {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 0.8rem;
+  gap: 0.7rem;
 }
 
 .company-social h3 {
-  margin-bottom: 0.2rem;
+  color: var(--ink);
+  margin: 0 0 0.2rem;
 }
 
 .social-link {
@@ -689,8 +727,8 @@ input:focus, select:focus, textarea:focus {
 }
 
 .social-link svg {
-  width: 25px;
-  height: 25px;
+  width: 22px;
+  height: 22px;
   flex-shrink: 0;
 }
 
@@ -761,7 +799,7 @@ input:focus, select:focus, textarea:focus {
     position: absolute;
     left: 0;
     right: 0;
-    top: 68px;
+    top: 84px;
     background: var(--cream);
     border-bottom: 1px solid var(--line);
     flex-direction: column;
@@ -780,12 +818,29 @@ input:focus, select:focus, textarea:focus {
 }
 
 @media (max-width: 560px) {
+  .header-inner {
+    min-height: 72px;
+    gap: 0.5rem;
+  }
+
+  .brand {
+    width: 240px;
+    max-width: 68%;
+  }
+
   .brand-logo {
-    width: 115px;
+    width: 240px;
+    height: 64px;
+    max-width: 100%;
+  }
+
+  .nav {
+    top: 72px;
   }
 
   .company-footer {
     grid-template-columns: 1fr;
+    gap: 1.8rem;
   }
 
   .company-copyright {
@@ -793,7 +848,17 @@ input:focus, select:focus, textarea:focus {
   }
 
   .footer-company-logo {
-    width: 145px;
+    width: 80px;
+    height: 55px;
+  }
+
+  .footer-brand > a {
+    max-width: 130px;
+  }
+
+  .footer-logo {
+    width: 120px;
+    height: 48px;
   }
 
   .module-grid, .module-grid.two, .channels, .steps, .form-grid {
@@ -808,160 +873,12 @@ input:focus, select:focus, textarea:focus {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  * {
+  *, *::before, *::after {
     transition: none !important;
     scroll-behavior: auto !important;
   }
 
   .bill {
     transform: none;
-  }
-}
-
-.footer-brand-social {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 0.5rem;
-}
-
-.footer-brand-social .footer-company-logo {
-  margin-bottom: 0.5rem;
-}
-
-
-.footer-brand {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 0.5rem;
-}
-
-.footer-brand > a {
-  display: inline-flex;
-  align-items: center;
-  max-width: 160px;
-}
-
-.footer-logo {
-  display: block;
-  width: 140px;
-  max-width: 100%;
-  height: 55px;
-  object-fit: contain;
-  object-position: left center;
-}
-
-.footer-brand p {
-  margin: 0;
-}
-
-@media (max-width: 560px) {
-  .footer-brand > a {
-    max-width: 130px;
-  }
-
-  .footer-logo {
-    width: 120px;
-    height: 48px;
-  }
-}
-
-
-.site-footer {
-  border-top: 1px solid var(--line);
-  padding: 2.5rem 0 1rem;
-  color: var(--ink-soft);
-  font-size: 0.92rem;
-}
-
-.company-footer {
-  display: grid;
-  grid-template-columns: minmax(0, 1.7fr) minmax(180px, 0.8fr);
-  align-items: start;
-  gap: 2.5rem;
-}
-
-.company-details h2 {
-  font-size: 1.4rem;
-  color: var(--ink);
-  margin-bottom: 1rem;
-}
-
-.company-details p {
-  margin-bottom: 0.7rem;
-  overflow-wrap: anywhere;
-}
-
-.company-details a {
-  color: var(--brand-dark);
-}
-
-.footer-brand-social {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 1rem;
-}
-
-.footer-company-logo {
-  display: block;
-  width: 90px;
-  height: 65px;
-  max-width: 100%;
-  object-fit: contain;
-  object-position: left center;
-}
-
-.company-social {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 0.7rem;
-}
-
-.company-social h3 {
-  color: var(--ink);
-  margin: 0 0 0.2rem;
-}
-
-.social-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.65rem;
-  text-decoration: none;
-  font-weight: 700;
-}
-
-.social-link svg {
-  width: 22px;
-  height: 22px;
-  flex-shrink: 0;
-}
-
-.social-link:hover {
-  color: var(--brand-dark);
-}
-
-.company-copyright {
-  grid-column: 1 / -1;
-  margin: 0;
-  padding-top: 1rem;
-  border-top: 1px solid var(--line);
-}
-
-@media (max-width: 560px) {
-  .company-footer {
-    grid-template-columns: 1fr;
-    gap: 1.8rem;
-  }
-
-  .company-copyright {
-    grid-column: auto;
-  }
-
-  .footer-company-logo {
-    width: 80px;
-    height: 55px;
   }
 }
