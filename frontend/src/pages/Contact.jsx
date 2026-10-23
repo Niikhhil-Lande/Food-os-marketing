@@ -48,7 +48,7 @@ export default function Contact() {
               <p>A walkthrough on your own menu.</p>
               <span className="link-arrow">Pick a time →</span>
             </Link>
-            <a className="card channel" href={`mailto:${CONTACT_EMAIL}`}>
+            <a className="card channel" href={`https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(CONTACT_EMAIL)}`} target="_blank" rel="noopener noreferrer">
               <p className="module-label">Replies in a day</p>
               <h2 className="h3">Write to us</h2>
               <p>For longer questions, partnerships, or multi-outlet rollouts.</p>

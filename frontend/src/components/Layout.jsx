@@ -125,7 +125,11 @@ export default function Layout() {
 
             <p>
               Email:{' '}
-              <a href="mailto:info@aadviktechie.in">
+              <a
+                href="https://mail.google.com/mail/?view=cm&fs=1&to=info%40aadviktechie.in"
+                target="_blank"
+                rel="noreferrer"
+              >
                 info@aadviktechie.in
               </a>
             </p>

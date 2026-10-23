@@ -25,11 +25,8 @@ export function validate(values, variant) {
   const email = values.email.trim();
   if (whatsapp && !PHONE_RE.test(whatsapp)) errors.whatsapp = 'Enter a valid phone number.';
   if (email && !EMAIL_RE.test(email)) errors.email = 'Enter a valid email address.';
-  if (!whatsapp && !email) {
-    const msg = variant === 'demo'
-      ? 'Add your WhatsApp number so we can reach you.'
-      : 'Add a WhatsApp number or an email so we can reply.';
-    errors[variant === 'demo' ? 'whatsapp' : 'email'] = msg;
+  if (!whatsapp) {
+    errors.whatsapp = 'WhatsApp number is required.';
   }
   return errors;
 }
@@ -91,7 +88,7 @@ export default function LeadForm({ variant, onSubmit, submitLabel, privacyNote }
         <FormField label="Your name" error={errors.name}>
           {(p) => <input {...p} type="text" autoComplete="name" value={values.name} onChange={set('name')} maxLength={120} />}
         </FormField>
-        <FormField label="WhatsApp number" error={errors.whatsapp}>
+        <FormField label="WhatsApp number" required error={errors.whatsapp}>
           {(p) => <input {...p} type="tel" autoComplete="tel" placeholder="+91" value={values.whatsapp} onChange={set('whatsapp')} />}
         </FormField>
         {variant === 'contact' && (

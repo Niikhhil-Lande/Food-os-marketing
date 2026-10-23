@@ -8,12 +8,13 @@ describe('validate', () => {
 
   it('requires a contact method', () => {
     expect(validate(base, 'demo').whatsapp).toMatch(/WhatsApp/);
-    expect(validate(base, 'contact').email).toMatch(/WhatsApp number or an email/);
+    expect(validate(base, 'contact').whatsapp).toMatch(/required/);
   });
 
-  it('accepts a phone number or an email', () => {
+  it('requires WhatsApp for both forms and accepts a valid number', () => {
     expect(validate({ whatsapp: '+91 98765 43210', email: '' }, 'demo')).toEqual({});
-    expect(validate({ whatsapp: '', email: 'a@b.in' }, 'contact')).toEqual({});
+    expect(validate({ whatsapp: '+91 98765 43210', email: 'a@b.in' }, 'contact')).toEqual({});
+    expect(validate({ whatsapp: '', email: 'a@b.in' }, 'contact').whatsapp).toMatch(/required/);
   });
 
   it('rejects malformed values', () => {

@@ -41,6 +41,12 @@ async function request(path, { method = 'GET', body, token } = {}) {
   let data = null;
   try { data = await res.json(); } catch { /* empty or non-JSON body */ }
   if (!res.ok) {
+    if (res.status === 404 && !data?.message) {
+      throw new ApiError(
+        'The booking service could not be found. Please contact us on WhatsApp while we reconnect the service.',
+        res.status
+      );
+    }
     throw new ApiError(data?.message || 'Something went wrong. Please try again.', res.status, data?.fields);
   }
   return data;
